@@ -11,8 +11,22 @@
   <body>
     <main>
       <header>
-        <h1 class="rootpdx">ROOTPDX</h1>
-        <p class="byline">est. 2019 · Glen Sasek</p>
+        <form class="terminal" id="terminal" aria-label="Open a numbered section">
+          <label for="selection"><strong>rootpdx > </strong></label>
+          <span aria-hidden="true">&gt;</span>
+          <input
+            id="selection"
+            name="selection"
+            type="text"
+            inputmode="numeric"
+            pattern="[1-5]"
+            maxlength="1"
+            autocomplete="off"
+            aria-describedby="prompt-help"
+          />
+          <span class="cursor" aria-hidden="true"></span>
+          <span class="visually-hidden" id="prompt-help">Enter a number from 1 through 5 to open that item. Enter is not required.</span>
+        </form>
       </header>
 
       <nav aria-label="ROOTPDX sections">
@@ -25,22 +39,6 @@
         </ol>
       </nav>
 
-      <form class="terminal" id="terminal" aria-label="Open a numbered section">
-        <label for="selection"><strong>rootpdx:~$</strong> make something</label>
-        <span aria-hidden="true">&gt;</span>
-        <input
-          id="selection"
-          name="selection"
-          type="text"
-          inputmode="numeric"
-          pattern="[1-5]"
-          maxlength="1"
-          autocomplete="off"
-          aria-describedby="prompt-help"
-        />
-        <span class="cursor" aria-hidden="true"></span>
-        <span class="visually-hidden" id="prompt-help">Enter a number from 1 through 5 to open that item. Enter is not required.</span>
-      </form>
     </main>
 
     <script>
