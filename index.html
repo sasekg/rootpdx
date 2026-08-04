@@ -1,19 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0" />
-  <title>rootpdx</title>
-  <meta name="description"
-        content="A simple GitHub Pages site for rootpdx." />
-  <link rel="stylesheet"
-        href="styles.css" />
-</head>
-<body>
-  <header>
-    <div class="rootpdx">ROOTPDX</div>
-    <div class="prompt"><strong>rootpdx:~$</strong> make something</div>
-  </header>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#030609" />
+    <meta name="description" content="ROOTPDX — ideas, questions, and projects by Glen Sasek." />
+    <title>ROOTPDX — Glen Sasek</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1 class="rootpdx">ROOTPDX</h1>
+        <p class="byline">est. 2019 · Glen Sasek</p>
+      </header>
+
+      <nav aria-label="ROOTPDX sections">
+        <ol>
+          <li><a href="/repo-of-the-week/">Repo of the Week</a></li>
+          <li><a href="/thinking/">Thinking</a></li>
+          <li><a href="/working/">Working</a></li>
+          <li><a href="/playing/">Playing</a></li>
+          <li><a href="/contact/">Contact Glen Sasek</a></li>
+        </ol>
+      </nav>
+
+      <form class="terminal" id="terminal" aria-label="Open a numbered section">
+        <label for="selection"><strong>rootpdx:~$</strong> make something</label>
+        <span aria-hidden="true">&gt;</span>
+        <input
+          id="selection"
+          name="selection"
+          type="text"
+          inputmode="numeric"
+          pattern="[1-5]"
+          maxlength="1"
+          autocomplete="off"
+          aria-describedby="prompt-help"
+        />
+        <span class="cursor" aria-hidden="true"></span>
+        <span class="visually-hidden" id="prompt-help">Enter a number from 1 through 5 to open that item. Enter is not required.</span>
+      </form>
+    </main>
+
+    <script>
+      (() => {
+        const form = document.getElementById('terminal');
+        const input = document.getElementById('selection');
+        const links = [...document.querySelectorAll('nav li a')];
+
+        const openSelection = (value) => {
+          const link = links[Number(value) - 1];
+          if (link) window.location.assign(link.href);
+        };
+
+        input.addEventListener('input', () => openSelection(input.value));
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+          openSelection(input.value);
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (/^[1-5]$/.test(event.key) && document.activeElement !== input) {
+            event.preventDefault();
+            input.value = event.key;
+            openSelection(event.key);
+          }
+        });
+      })();
+    </script>
+  </body>
 </html>
