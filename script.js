@@ -5,7 +5,7 @@
     navigationLabel: 'ROOTPDX sections',
     promptHelp: 'Enter a number from 1 through 5 to open that item. Enter is not required.',
     navigation: [
-      { label: '[1] Repo of the Week', href: '/repo-of-the-week/' },
+      { label: '[1] Get To Know Glen Sasek', href: 'https://chatgpt.com/g/g-6a4ed887624881919db62c1d146fca71-get-to-know-glen-sasek' },
       { label: '[2] Thinking', href: '/thinking/' },
       { label: '[3] Working', href: '/working/' },
       { label: '[4] Playing', href: '/playing/' },
