@@ -4,16 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#030609" />
-    <meta name="description" content="ROOTPDX — ideas, questions, and projects by Glen Sasek." />
-    <title>ROOTPDX — Glen Sasek</title>
+    <meta name="description" content="ROOTPDX - ideas, questions, and projects by Glen Sasek." />
+    <title>ROOTPDX - Glen Sasek</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <main>
       <header>
-        <form class="terminal" id="terminal" aria-label="Open a numbered section">
-          <label for="selection"><strong>rootpdx > </strong></label>
-          <span aria-hidden="true">&gt;</span>
+        <form class="terminal" id="terminal">
+          <label for="selection"><strong id="prompt"></strong></label>
           <input
             id="selection"
             name="selection"
@@ -25,27 +24,56 @@
             aria-describedby="prompt-help"
           />
           <span class="cursor" aria-hidden="true"></span>
-          <span class="visually-hidden" id="prompt-help">Enter a number from 1 through 5 to open that item. Enter is not required.</span>
+          <span class="visually-hidden" id="prompt-help"></span>
         </form>
       </header>
 
-      <nav aria-label="ROOTPDX sections">
-        <ol>
-          <li><a href="/repo-of-the-week/">Repo of the Week</a></li>
-          <li><a href="/thinking/">Thinking</a></li>
-          <li><a href="/working/">Working</a></li>
-          <li><a href="/playing/">Playing</a></li>
-          <li><a href="/contact/">Contact Glen Sasek</a></li>
-        </ol>
+      <nav id="navigation">
+        <ol id="navigation-list"></ol>
       </nav>
-
     </main>
+
+    <script type="application/json" id="rootpdx-strings">
+      {
+        "prompt": "rootpdx >",
+        "terminalLabel": "Open a numbered section",
+        "navigationLabel": "ROOTPDX sections",
+        "promptHelp": "Enter a number from 1 through 5 to open that item. Enter is not required.",
+        "navigation": [
+          { "label": "Repo of the Week", "href": "/repo-of-the-week/" },
+          { "label": "Thinking", "href": "/thinking/" },
+          { "label": "Working", "href": "/working/" },
+          { "label": "Playing", "href": "/playing/" },
+          { "label": "Contact Glen Sasek", "href": "/contact/" }
+        ]
+      }
+    </script>
 
     <script>
       (() => {
+        const strings = JSON.parse(document.getElementById('rootpdx-strings').textContent);
         const form = document.getElementById('terminal');
         const input = document.getElementById('selection');
-        const links = [...document.querySelectorAll('nav li a')];
+        const navigation = document.getElementById('navigation');
+        const navigationList = document.getElementById('navigation-list');
+
+        document.getElementById('prompt').textContent = strings.prompt;
+        document.getElementById('prompt-help').textContent = strings.promptHelp;
+        form.setAttribute('aria-label', strings.terminalLabel);
+        navigation.setAttribute('aria-label', strings.navigationLabel);
+
+        strings.navigation.forEach((item) => {
+          const listItem = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = item.href;
+          link.textContent = item.label;
+          listItem.append(link);
+          navigationList.append(listItem);
+        });
+
+        const links = [...navigationList.querySelectorAll('a')];
+        input.pattern = `[1-${links.length}]`;
+        input.maxLength = String(links.length).length;
 
         const openSelection = (value) => {
           const link = links[Number(value) - 1];
