@@ -22,29 +22,33 @@
             maxlength="1"
             autocomplete="off"
             aria-describedby="prompt-help"
+            placeholder="_"
           />
-          <span class="cursor" aria-hidden="true"></span>
           <span class="visually-hidden" id="prompt-help"></span>
         </form>
       </header>
 
       <nav id="navigation">
-        <ol id="navigation-list"></ol>
+        <ol id="navigation-list">
+          <template id="navigation-item-template">
+            <li><a href="" target="_blank"></a></li>
+          </template>
+        </ol>
       </nav>
     </main>
 
     <script type="application/json" id="rootpdx-strings">
       {
-        "prompt": "rootpdx >",
+        "prompt": "rootpdx:~$",
         "terminalLabel": "Open a numbered section",
         "navigationLabel": "ROOTPDX sections",
         "promptHelp": "Enter a number from 1 through 5 to open that item. Enter is not required.",
         "navigation": [
-          { "label": "Repo of the Week", "href": "/repo-of-the-week/" },
-          { "label": "Thinking", "href": "/thinking/" },
-          { "label": "Working", "href": "/working/" },
-          { "label": "Playing", "href": "/playing/" },
-          { "label": "Contact Glen Sasek", "href": "/contact/" }
+          { "label": "[1] Repo of the Week", "href": "/repo-of-the-week/" },
+          { "label": "[2] Thinking", "href": "/thinking/" },
+          { "label": "[3] Working", "href": "/working/" },
+          { "label": "[4] Playing", "href": "/playing/" },
+          { "label": "[5] Contact Glen Sasek", "href": "/contact/" }
         ]
       }
     </script>
@@ -56,6 +60,7 @@
         const input = document.getElementById('selection');
         const navigation = document.getElementById('navigation');
         const navigationList = document.getElementById('navigation-list');
+        const navigationItemTemplate = document.getElementById('navigation-item-template');
 
         document.getElementById('prompt').textContent = strings.prompt;
         document.getElementById('prompt-help').textContent = strings.promptHelp;
@@ -63,11 +68,10 @@
         navigation.setAttribute('aria-label', strings.navigationLabel);
 
         strings.navigation.forEach((item) => {
-          const listItem = document.createElement('li');
-          const link = document.createElement('a');
+          const listItem = navigationItemTemplate.content.firstElementChild.cloneNode(true);
+          const link = listItem.querySelector('a');
           link.href = item.href;
           link.textContent = item.label;
-          listItem.append(link);
           navigationList.append(listItem);
         });
 

@@ -9,14 +9,44 @@
   color-scheme: dark;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
   min-height: 100svh;
   margin: 0;
   background-color: var(--rootpdx-black);
+}
+
+h1,
+h2,
+h3,
+p,
+ol,
+ul {
+  margin: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+}
+
+img,
+picture {
+  display: block;
+  max-width: 100%;
 }
 
 main {
@@ -36,11 +66,12 @@ header {
 
 ol {
   margin: 0;
-  padding-left: 2.6rem;
+  padding-left: 0;
+  list-style-type: none;
 }
 
 li {
-  padding: 0.65rem 0 0.65rem 0.5rem;
+  padding: 0.65rem 0 0.5rem 0;
 }
 
 li::marker {
@@ -49,8 +80,7 @@ li::marker {
 
 a {
   color: var(--rootpdx-blue);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.28em;
+  text-decoration: none;
 }
 
 a:hover,
@@ -72,7 +102,7 @@ a:focus-visible {
 
 .terminal strong {
   color: var(--rootpdx-blue);
-  font-weight: 500;
+  font-weight: bolder;
 }
 
 .terminal input {
@@ -83,14 +113,19 @@ a:focus-visible {
   outline: 0;
   color: var(--rootpdx-blue);
   background: transparent;
-  caret-color: transparent;
+  /* caret-color: transparent; */
   font: inherit;
 }
 
+.terminal input::placeholder {
+  color: var(--rootpdx-blue);
+  animation: blink 1.1s steps(1) infinite;
+}
+
 .cursor {
-  width: 0.62em;
+  /* width: 0.62em;
   height: 1.1em;
-  margin-left: -0.55rem;
+  margin-left: -0.55rem; */
   background-color: var(--rootpdx-blue);
   animation: blink 1.1s steps(1) infinite;
   pointer-events: none;
