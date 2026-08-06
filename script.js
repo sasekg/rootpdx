@@ -34,15 +34,16 @@
   });
 
   const links = [...navigationList.querySelectorAll('a')];
-  input.pattern = `[1-${links.length}]`;
-  input.maxLength = String(links.length).length;
+  //input.pattern = `[1-${links.length}]`;
+  input.maxLength = 100;//String(links.length).length;
 
   const openSelection = (value) => {
     const link = links[Number(value) - 1];
     if (link) link.click();
   };
 
-  input.addEventListener('input', () => openSelection(input.value));
+  // input.addEventListener('input', () => openSelection(input.value));
+
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     openSelection(input.value);
@@ -55,4 +56,6 @@
   //     openSelection(event.key);
   //   }
   // });
+
+  input.focus();
 })();

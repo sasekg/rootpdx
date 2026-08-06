@@ -106,7 +106,7 @@ a:focus-visible {
 }
 
 .terminal input {
-  width: 1ch;
+  /* width: 1ch; */
   padding: 0;
   border: 0;
   border-radius: 0;
