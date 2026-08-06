@@ -3,12 +3,13 @@
     prompt: 'rootpdx:~$',
     terminalLabel: 'Open a numbered section',
     navigationLabel: 'ROOTPDX sections',
-    promptHelp: 'Enter a number from 1 through 5 to open that item. Enter is not required.',
+    promptHelp: 'Enter a number from 1 through 5 to open that item.',
     navigation: [
       { label: '[1] Get To Know Glen Sasek', href: 'https://chatgpt.com/g/g-6a4ed887624881919db62c1d146fca71-get-to-know-glen-sasek' },
       { label: '[2] Schedule a Meeting', href: 'https://calendar.app.google/k8yhXzGVT7sTCWCw9' },
-      { label: '[3] Talk & Text (503) 347-6817', href: 'tel:+15033476817' },
-      { label: '[4] Email Glen <sasekg@gmail.com>', href: 'mailto:sasekg@gmail.com' }
+      { label: '[3] Call  503-347-6817', href: 'tel:+15033476817' },
+      { label: '[4] Email sasekg@gmail.com', href: 'mailto:sasekg@gmail.com' },
+      { label: '[5] Add Glen Sasek to Contacts', href: 'glen-sasek.vcf', download: 'glen-sasek.vcf' }
     ]
   };
 
@@ -28,6 +29,7 @@
     const link = listItem.querySelector('a');
     link.href = item.href;
     link.textContent = item.label;
+    if (item.download) link.download = item.download;
     navigationList.append(listItem);
   });
 
@@ -37,7 +39,7 @@
 
   const openSelection = (value) => {
     const link = links[Number(value) - 1];
-    if (link) window.location.assign(link.href);
+    if (link) link.click();
   };
 
   input.addEventListener('input', () => openSelection(input.value));
