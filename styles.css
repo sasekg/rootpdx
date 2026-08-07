@@ -5,7 +5,8 @@
 
   color: var(--rootpdx-blue);
   background-color: var(--rootpdx-black);
-  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-family:
+    ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   color-scheme: dark;
 }
 
@@ -27,6 +28,21 @@ header {
   padding: 1rem 0;
   margin-bottom: clamp(2.5rem, 7vw, 4rem);
   background-color: var(--rootpdx-black);
+
+  #contact-section {
+    position: absolute;
+    top: -5em;
+
+    p {
+      font-size: small;
+      line-height: 1.25em;
+    }
+
+    a {
+      color: var(--rootpdx-blue);
+      text-decoration: none;
+    }
+  }
 
   form.cli-form {
     display: flex;
@@ -67,8 +83,8 @@ nav {
       padding: 0.65rem 0 0.5rem 0;
 
       a {
-          color: var(--rootpdx-blue);
-          text-decoration: none;
+        color: var(--rootpdx-blue);
+        text-decoration: none;
       }
 
       a:hover,

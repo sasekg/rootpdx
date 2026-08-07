@@ -7,9 +7,10 @@
     navigation: [
       { label: '[1] Get To Know Glen Sasek', href: 'https://chatgpt.com/g/g-6a4ed887624881919db62c1d146fca71-get-to-know-glen-sasek' },
       { label: '[2] Schedule a Meeting', href: 'https://calendar.app.google/k8yhXzGVT7sTCWCw9' },
-      { label: '[3] 503-347-6817', href: 'tel:+15033476817' },
-      { label: '[4] sasekg@gmail.com', href: 'mailto:sasekg@gmail.com' },
-      { label: '[5] Glen Sasek vCard', href: 'glen-sasek.vcf', download: 'glen-sasek.vcf' }
+      { label: '[3] Resume', href: 'Glen-Sasek-Resume.pdf', download: 'Glen-Sasek-Resume.pdf' },
+      { label: '[4] CV', href: 'cv.html' },
+      { label: '[5] Projects', href: 'projects.html' },
+      { label: '[6] Notes', href: 'notes.html' }
     ]
   };
 
