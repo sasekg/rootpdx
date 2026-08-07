@@ -121,10 +121,11 @@ nav {
   a {
     display: block;
     width: min(100% - 2rem, 48rem);
-    margin-inline: auto;
-    padding-block: 1rem;
+    margin: .5em auto;
+    /* padding-block: 1rem; */
     color: var(--rootpdx-blue);
     text-decoration: none;
+    font-size: small;
   }
 
   a:hover,
@@ -167,7 +168,7 @@ nav {
 article#cv-article,
 article.note {
   max-width: 68ch;
-  margin-inline: auto;
+  margin-inline: 4m;
   color: #d6e0ea;
   font-family:
     system-ui,
