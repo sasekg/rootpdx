@@ -12,17 +12,17 @@
   <body>
     <main>
       <header>
-        <form class="terminal" id="terminal">
-          <label for="selection"><strong id="prompt"></strong></label>
+        <form class="cli-form" id="cli-form">
+          <label for="cli-command"><strong id="cli-prompt"></strong></label>
           <input
-            id="selection"
-            name="selection"
+            id="cli-command"
+            name="cli-command"
             type="text"
-            inputmode="numeric"
+            inputmode="text"
             autocomplete="off"
-            aria-describedby="prompt-help"
+            aria-describedby="cli-command-help"
           />
-          <span class="visually-hidden" id="prompt-help"></span>
+          <span class="visually-hidden" id="cli-command-help"></span>
         </form>
       </header>
 

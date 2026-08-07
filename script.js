@@ -13,14 +13,14 @@
     ]
   };
 
-  const form = document.getElementById('terminal');
-  const input = document.getElementById('selection');
+  const form = document.getElementById('cli-form');
+  const input = document.getElementById('cli-command');
   const navigation = document.getElementById('navigation');
   const navigationList = document.getElementById('navigation-list');
   const navigationItemTemplate = document.getElementById('navigation-item-template');
 
-  document.getElementById('prompt').textContent = strings.prompt;
-  document.getElementById('prompt-help').textContent = strings.promptHelp;
+  document.getElementById('cli-prompt').textContent = strings.prompt;
+  document.getElementById('cli-command-help').textContent = strings.promptHelp;
   form.setAttribute('aria-label', strings.terminalLabel);
   navigation.setAttribute('aria-label', strings.navigationLabel);
 
