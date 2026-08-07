@@ -1,40 +1,52 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#030609" />
-    <meta name="description" content="ROOTPDX - ideas, questions, and projects by Glen Sasek." />
-    <title>ROOTPDX</title>
-    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <main>
-      <header>
-        <form class="cli-form" id="cli-form">
-          <label for="cli-command"><strong id="cli-prompt"></strong></label>
-          <input
-            id="cli-command"
-            name="cli-command"
-            type="text"
-            inputmode="text"
-            autocomplete="off"
-            aria-describedby="cli-command-help"
-          />
-          <span class="visually-hidden" id="cli-command-help"></span>
-        </form>
-      </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1" />
+  <meta name="theme-color"
+        content="#030609" />
+  <meta name="description"
+        content="ROOTPDX - ideas, questions, and projects by Glen Sasek." />
+  <title>ROOTPDX</title>
+  <link rel="icon"
+        href="favicon.svg"
+        type="image/svg+xml" />
+  <link rel="stylesheet"
+        href="styles.css" />
+</head>
+<body>
+  <section id="contact-section" aria-label="Contact information">
+    <p>Glen Sasek</p>
+    <p><a href="tel:+15033476817">503-347-6817</a></p>
+    <p><a href="mailto:sasekg@gmail.com">sasekg@gmail.com</a></p>
+    <p><a href="glen-sasek.vcf" download="glen-sasek.vcf">vCard</a></p>
+  </section>
+  <main>
+    <header>
+      <form class="cli-form"
+            id="cli-form">
+        <label for="cli-command"><strong id="cli-prompt"></strong></label>
+        <input id="cli-command"
+               name="cli-command"
+               type="text"
+               inputmode="text"
+               autocomplete="off"
+               aria-describedby="cli-command-help" />
+        <span class="visually-hidden"
+              id="cli-command-help"></span>
+      </form>
+    </header>
 
-      <nav id="navigation">
-        <ol id="navigation-list">
-          <template id="navigation-item-template">
-            <li><a href=""></a></li>
-          </template>
-        </ol>
-      </nav>
-    </main>
+    <nav id="navigation">
+      <ol id="navigation-list">
+        <template id="navigation-item-template">
+          <li><a href=""></a></li>
+        </template>
+      </ol>
+    </nav>
+  </main>
 
-    <script src="script.js"></script>
-  </body>
+  <script src="script.js"></script>
+</body>
 </html>
