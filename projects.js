@@ -11,7 +11,7 @@
       },
       {
         label: "[2] Pool Chemical Calculator: github.com/sasekg/Pool-Chemical-Calculator",
-        href: "https://github.com/sasekg/rootpdx/Pool-Chemical-Calculator/index.html",
+        href: "https://rootpdx.com/Pool-Chemical-Calculator/index.html",
       },
       {
         label: "[3] Virtual Greeter https://github.com/sasekg/Get-To-Know-Glen-Sasek",
