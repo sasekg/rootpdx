@@ -1,0 +1,61 @@
+name: Sync external site into rootpdx Pages
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 4 * * *'  # optional: daily at 04:00 UTC, change or remove
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout rootpdx (destination)
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Checkout source repo
+        uses: actions/checkout@v4
+        with:
+          repository: SOURCE_OWNER/SOURCE_REPO   # <- REPLACE: other repo (owner/repo)
+          token: ${{ secrets.SOURCE_REPO_TOKEN }} # required if source is private; omit or use GITHUB_TOKEN if public
+          path: source
+
+      # Optional: run build in the source repo if the other repo needs building
+      - name: Build source site (optional)
+        if: ${{ env.BUILD_COMMAND != '' }}
+        env:
+          NODE_OPTIONS: --max_old_space_size=4096
+        run: |
+          pushd source
+          # Replace with the build commands the other repo uses, or set BUILD_COMMAND secret/env
+          # Example for Node sites:
+          npm ci
+          npm run build
+          popd
+        shell: bash
+        env:
+          BUILD_COMMAND: "" # <- set via workflow_dispatch inputs or update this step directly
+
+      - name: Copy site into rootpdx Pages folder
+        run: |
+          # CONFIGURE THESE:
+          SRC_PATH="source/PATH/TO/STATIC"   # <- path inside checked-out source to copy (e.g., source/dist or source/docs)
+          DEST_PATH="docs/external-site"     # <- where in rootpdx to put files; rootpdx must be configured to serve from docs/ or adjust branch/dir
+          mkdir -p "$DEST_PATH"
+          rsync -av --delete --exclude='.git' "$SRC_PATH/" "$DEST_PATH/"
+
+      - name: Commit & push changes if any
+        env:
+          PAGER: cat
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$DEST_PATH"
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Sync external site from SOURCE_OWNER/SOURCE_REPO"
+          # push to default branch — change if your Pages is on a different branch
+          git push origin HEAD
